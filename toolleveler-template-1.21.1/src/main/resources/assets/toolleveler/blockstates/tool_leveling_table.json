@@ -1,7 +1,0 @@
-{
-	"variants" : {
-		"" : {
-			"model" : "toolleveler:block/tool_leveling_table"
-		}
-	}
-}
