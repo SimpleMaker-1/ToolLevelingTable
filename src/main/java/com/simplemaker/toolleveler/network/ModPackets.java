@@ -1,6 +1,7 @@
 package com.simplemaker.toolleveler.network;
 
 import com.simplemaker.toolleveler.ToolLeveler;
+import com.simplemaker.toolleveler.client.ClientPacketHandler;
 import com.simplemaker.toolleveler.network.packets.OpenItemValueScreenPacket;
 import com.simplemaker.toolleveler.network.packets.SetEnchantmentPacket;
 import com.simplemaker.toolleveler.network.packets.SyncConfigPacket;
@@ -27,9 +28,8 @@ public final class ModPackets {
         registrar.playToClient(
             OpenItemValueScreenPacket.TYPE,
             OpenItemValueScreenPacket.STREAM_CODEC,
-            OpenItemValueScreenPacket::handle
+            ClientPacketHandler::handleOpenItemValueScreen
         );
-
         registrar.playToServer(
             SetEnchantmentPacket.TYPE,
             SetEnchantmentPacket.STREAM_CODEC,
