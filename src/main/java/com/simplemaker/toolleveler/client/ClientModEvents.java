@@ -3,6 +3,7 @@ package com.simplemaker.toolleveler.client;
 import com.simplemaker.toolleveler.ToolLeveler;
 import com.simplemaker.toolleveler.client.screen.ToolLevelingTableScreen;
 import com.simplemaker.toolleveler.init.ModRegistry;
+
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -18,4 +19,5 @@ public class ClientModEvents {
                 ToolLevelingTableScreen::new
         );
     }
+    
 }

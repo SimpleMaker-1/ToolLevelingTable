@@ -7,11 +7,13 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.simplemaker.toolleveler.ToolLeveler;
 import com.simplemaker.toolleveler.config.util.ConfigManager;
 import com.simplemaker.toolleveler.config.util.ConfigSyncing;
-import com.simplemaker.toolleveler.network.ClientBoundPacketHandler;
+import com.simplemaker.toolleveler.network.packets.OpenItemValueScreenPacket;
 import com.simplemaker.toolleveler.utils.ProjectLinks;
+
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 public final class ToolLevelerCommand {
 
@@ -46,7 +48,7 @@ public final class ToolLevelerCommand {
 
     private static int showScreen(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         ServerPlayer player = context.getSource().getPlayerOrException();
-        ClientBoundPacketHandler.INSTANCE.openItemValueScreen(player);
+        PacketDistributor.sendToPlayer(player, new OpenItemValueScreenPacket());
         return 1;
     }
 

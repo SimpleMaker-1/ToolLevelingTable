@@ -1,14 +1,11 @@
 package com.simplemaker.toolleveler.network;
 
 import com.simplemaker.toolleveler.ToolLeveler;
-import com.simplemaker.toolleveler.client.ClientPacketHandler;
 import com.simplemaker.toolleveler.network.packets.OpenItemValueScreenPacket;
 import com.simplemaker.toolleveler.network.packets.SetEnchantmentPacket;
 import com.simplemaker.toolleveler.network.packets.SyncConfigPacket;
 
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public final class ModPackets {
@@ -26,18 +23,15 @@ public final class ModPackets {
             SyncConfigPacket.STREAM_CODEC,
             SyncConfigPacket::handle
         );
-
-        if (FMLEnvironment.dist == Dist.CLIENT) {
-            registrar.playToClient(
-                OpenItemValueScreenPacket.TYPE,
-                OpenItemValueScreenPacket.STREAM_CODEC,
-                ClientPacketHandler::handleOpenItemValueScreen
-            );
-        }
         registrar.playToServer(
             SetEnchantmentPacket.TYPE,
             SetEnchantmentPacket.STREAM_CODEC,
             SetEnchantmentPacket::handle
+        );
+        registrar.playToClient(
+            OpenItemValueScreenPacket.TYPE,
+            OpenItemValueScreenPacket.STREAM_CODEC,
+            (packet, context) -> context.enqueueWork(() -> ClientPacketHandler.handleOpenItemValueScreen(packet, context))
         );
     }
 }
