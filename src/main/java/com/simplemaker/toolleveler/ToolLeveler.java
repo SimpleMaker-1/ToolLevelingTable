@@ -3,7 +3,7 @@ package com.simplemaker.toolleveler;
 import java.util.ServiceLoader;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory; // ✅ Ensure this is imported
+import org.slf4j.LoggerFactory;
 
 import com.simplemaker.toolleveler.config.util.ConfigManager;
 import com.simplemaker.toolleveler.init.ModCreativeTab;

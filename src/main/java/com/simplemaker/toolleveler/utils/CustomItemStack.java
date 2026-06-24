@@ -37,12 +37,12 @@ public class CustomItemStack {
     public List<Component> getTooltipLines(TooltipFlag flag) {
         List<Component> lines = Lists.newArrayList();
 
-        // Item name, coloured by rarity
+        //coloured by rarity
         MutableComponent title = Component.empty()
                 .append(stack.getHoverName())
                 .withStyle(stack.getRarity().color());
 
-        // 🔥 FIXED FOR 1.21.1: Use Data Components to check for custom names
+        // Use Data Components to check for custom names
         if (stack.getComponents().has(DataComponents.CUSTOM_NAME)) {
             title = title.withStyle(ChatFormatting.ITALIC);
         }

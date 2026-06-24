@@ -24,11 +24,9 @@ public class ItemValuesListWidget extends ObjectSelectionList<ItemValueEntry> {
     private final ItemValueScreen screen;
 
     public ItemValuesListWidget(ItemValueScreen screen, int x, int y, int height) {
-        // 🔥 FIXED: Removed parentheses from 'height' variable
         super(screen.getMinecraft(), width(), height, y, 18);
         this.screen = screen;
         
-        // Use standard Mojang setters to keep internal boundaries in sync
         this.setX(x);
         this.refreshList();
     }
@@ -50,9 +48,7 @@ public class ItemValuesListWidget extends ObjectSelectionList<ItemValueEntry> {
         }
     }
 
-    // -------------------------
-    // RENDER (FIXED FOR 1.21.1)
-    // -------------------------
+    
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTicks);

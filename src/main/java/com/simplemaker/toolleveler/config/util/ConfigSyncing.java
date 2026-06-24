@@ -16,7 +16,6 @@ public final class ConfigSyncing {
             JsonElement json = entry.getValue().serialize();
             ToolLeveler.LOGGER.info("Syncing config '{}' to all clients.", entry.getKey());
             
-            // 🔥 FIXED FOR 1.21.1: Replaced ALL.noArg().send() with simple static helper
             PacketDistributor.sendToAllPlayers(new SyncConfigPacket(entry.getKey(), json));
         }
     }
@@ -26,7 +25,6 @@ public final class ConfigSyncing {
             JsonElement json = entry.getValue().serialize();
             ToolLeveler.LOGGER.info("Syncing config '{}' to {}.", entry.getKey(), player.getName().getString());
             
-            // 🔥 FIXED FOR 1.21.1: Replaced PLAYER.with(player).send() with direct static mapping
             PacketDistributor.sendToPlayer(player, new SyncConfigPacket(entry.getKey(), json));
         }
     }

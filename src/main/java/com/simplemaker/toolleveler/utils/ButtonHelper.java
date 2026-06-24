@@ -63,7 +63,7 @@ public final class ButtonHelper {
             return entry;
         }
         
-        // 🔥 FIXED FOR 1.21.1: Max level is stored under the dynamic .definition() property data block
+        // Max level is stored under the dynamic .definition() property data block
         if (enchantment.value().definition().maxLevel() == 1) {
             entry.setStatus(ButtonStatus.USELESS);
             return entry;

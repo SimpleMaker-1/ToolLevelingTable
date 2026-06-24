@@ -34,7 +34,6 @@ public class ItemValueScreen extends Screen {
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        // 🔥 FIXED FOR 1.21.1: Added mouse coordinates and partial ticks parameters
         this.renderBackground(graphics, mouseX, mouseY, partialTicks);
         this.itemValues.render(graphics, mouseX, mouseY, partialTicks);
         graphics.drawString(this.font, defaultItemValueText, TITLE_X, TITLE_Y, 0xFFFFFF, false);
@@ -46,8 +45,7 @@ public class ItemValueScreen extends Screen {
         return super.mouseClicked(mouseX, mouseY, buttonID);
     }
 
-    // Note: In 1.21.1 mouseScrolled also includes a scrollX parameter in some mappings (double mouseX, double mouseY, double scrollX, double scrollY). 
-    // If your compiler gets angry at this method next, adjust its signature accordingly!
+
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
         this.itemValues.mouseScrolled(mouseX, mouseY, scrollX, scrollY);

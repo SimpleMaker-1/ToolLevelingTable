@@ -91,9 +91,4 @@ public class ButtonEntry extends ObjectSelectionList.Entry<ButtonEntry> {
     public ButtonStatus getStatus() {
         return status;
     }
-
-    // Getter helper for utility classes
-    public Holder<Enchantment> getEnchantment() {
-        return this.enchantment;
-    }
 }

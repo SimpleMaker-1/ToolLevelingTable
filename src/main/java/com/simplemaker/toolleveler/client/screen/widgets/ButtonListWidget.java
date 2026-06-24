@@ -34,7 +34,6 @@ public class ButtonListWidget extends ObjectSelectionList<ButtonEntry> {
         super(screen.getMinecraft(), width, height, y, 22);
         this.screen = screen;
         
-        // Use standard Mojang widget setter for X position
         this.setX(x);
         
         this.rowLeftOffset = 1;
@@ -42,18 +41,16 @@ public class ButtonListWidget extends ObjectSelectionList<ButtonEntry> {
         this.entryWidth = rowRightOffset - rowLeftOffset;
     }
 
-    // -------------------------
-    // DATA (FIXED FOR 1.21.1 ENCHANTMENTS)
-    // -------------------------
+
     public void refreshList() {
         this.clearEntries();
         ItemStack stack = this.screen.getMenu().getSlot(0).getItem();
         if (!stack.is(Items.AIR)) {
-            // 🔥 FIXED FOR 1.21.1: EnchantmentHelper now returns ItemEnchantments wrapper
             ItemEnchantments enchantments = EnchantmentHelper.getEnchantmentsForCrafting(stack);
             
             // Loop over Holder<Enchantment> registry entries
             for (Map.Entry<Holder<Enchantment>, Integer> entry : enchantments.entrySet()) {
+
                 // Pass the raw Enchantment instance or Holder depending on your ButtonHelper signature
                 ButtonEntry buttonEntry = ButtonHelper.getButtonEntry(this, entry.getKey(), entry.getValue());
                 this.addEntry(buttonEntry);
@@ -61,11 +58,7 @@ public class ButtonListWidget extends ObjectSelectionList<ButtonEntry> {
         }
     }
 
-    // -------------------------
-    // RENDER (FIXED FOR 1.21.1)
-    // -------------------------
-    
-    // 🔥 FIXED: Overriding renderWidget because render() is final
+
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
@@ -73,12 +66,10 @@ public class ButtonListWidget extends ObjectSelectionList<ButtonEntry> {
         this.renderList(guiGraphics, mouseX, mouseY, partialTick);
     }
 
-    // 🔥 FIXED: Added correct parameters and removed @Override since it's custom behavior here
     protected void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         guiGraphics.fill(this.getX(), this.getRectangle().top(), this.getX() + this.width, this.getRectangle().bottom(), 0xFF8B8B8B);
     }
 
-    // 🔥 FIXED: Matching exact signature for 1.21.1 list rendering
     
     protected void renderList(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         int itemCount = this.getItemCount();
@@ -107,9 +98,6 @@ public class ButtonListWidget extends ObjectSelectionList<ButtonEntry> {
         }
     }
 
-    // -------------------------
-    // CLICK HANDLING
-    // -------------------------
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int key) {
         this.updateScrollingState(mouseX, mouseY, key);
@@ -136,9 +124,7 @@ public class ButtonListWidget extends ObjectSelectionList<ButtonEntry> {
         return mouseX >= left && mouseX <= right && index >= 0 && adjustedMouseY >= 0 && index < this.getItemCount() && !padding ? this.children().get(index) : null;
     }
 
-    // -------------------------
-    // SCROLLBAR (UPDATED RENDERING)
-    // -------------------------
+
     private void renderScrollBar() {
         int x0Bar = this.getScrollbarPosition();
         int x1Bar = x0Bar + SCROLLBAR_WIDTH;
@@ -179,9 +165,7 @@ public class ButtonListWidget extends ObjectSelectionList<ButtonEntry> {
         BufferUploader.drawWithShader(buffer.buildOrThrow());
     }
 
-    // -------------------------
-    // LAYOUT
-    // -------------------------
+
     @Override
     protected int getScrollbarPosition() {
         return this.getX() + this.width - SCROLLBAR_WIDTH - SCROLLBAR_BUFFER_RIGHT;

@@ -42,7 +42,6 @@ public class ToolLevelingTableScreen extends AbstractContainerScreen<ToolLevelin
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        // 🔥 FIXED FOR 1.21.1: Added extra parameters to renderBackground
         this.renderBackground(graphics, mouseX, mouseY, partialTicks);
         this.buttonList.render(graphics, mouseX, mouseY, partialTicks);
         
@@ -72,7 +71,6 @@ public class ToolLevelingTableScreen extends AbstractContainerScreen<ToolLevelin
     }
 
     @Override
-    // 🔥 FIXED FOR 1.21.1: Updated signature to split horizontal and vertical scrolling
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
         this.buttonList.mouseScrolled(mouseX, mouseY, scrollX, scrollY);
         return super.mouseScrolled(mouseX, mouseY, scrollX, scrollY);

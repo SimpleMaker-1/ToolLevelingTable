@@ -15,7 +15,7 @@ public final class ModPackets {
     }
 
     private static void onRegisterPayloads(RegisterPayloadHandlersEvent event) {
-        // ✅ FIX: Chain .versioned() to explicitly define network compatibility
+        
         var registrar = event.registrar(ToolLeveler.MOD_ID);
 
         registrar.playToClient(

@@ -25,8 +25,6 @@ public final class ModRegistry {
     private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(BuiltInRegistries.MENU, ToolLeveler.MOD_ID);
     private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, ToolLeveler.MOD_ID);
 
-    // Block
-    // 🔥 FIXED FOR 1.21.1: Explicitly pass BlockBehaviour.Properties into the block constructor lambda
     public static final DeferredHolder<Block, ToolLevelingTableBlock> TLT_BLOCK = BLOCKS.register(ToolLeveler.TABLE, 
             () -> new ToolLevelingTableBlock(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.METAL)
@@ -34,6 +32,7 @@ public final class ModRegistry {
                     .sound(SoundType.METAL)
                     .requiresCorrectToolForDrops()
             ));
+            
     // Block item
     public static final DeferredHolder<Item, BlockItem> TLT_ITEM = ITEMS.register(ToolLeveler.TABLE, () -> new BlockItem(TLT_BLOCK.get(), new Item.Properties().stacksTo(64)));
 

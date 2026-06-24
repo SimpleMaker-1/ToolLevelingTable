@@ -27,7 +27,6 @@ public class RegistryObject<T> implements Supplier<T> {
         return (Holder<T>) this.holder;
     }
 
-    // 🔥 FIXED FOR 1.21.1: Use relaxed wildcards for the return type to drop the constraint error
     public DeferredHolder<?, ?> getHolder() {
         return this.holder;
     }

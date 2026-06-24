@@ -44,11 +44,9 @@ public class ItemValueEntry extends ObjectSelectionList.Entry<ItemValueEntry> {
     }
 
     private void renderItemTooltip(GuiGraphics guiGraphics, CustomItemStack stack, int mouseX, int mouseY) {
-        // 🔥 FIXED FOR 1.21.1: TooltipFlag properties migrated to static inner Default instances
         TooltipFlag flag = screen.getMinecraft().options.advancedItemTooltips ? TooltipFlag.Default.ADVANCED : TooltipFlag.Default.NORMAL;
         List<Component> tooltips = stack.getTooltipLines(flag);
         
-        // 🔥 FIXED FOR 1.21.1: Method renamed to renderComponentTooltip to natively pass a list of Components
         guiGraphics.renderComponentTooltip(
                 screen.getMinecraft().font,
                 tooltips,

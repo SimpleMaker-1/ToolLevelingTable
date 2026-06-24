@@ -33,12 +33,8 @@ public class ToolLevelingTableBlockEntity extends BlockEntity implements Worldly
     public ToolLevelingTableBlockEntity(BlockPos pos, BlockState state) {
         super(ModRegistry.TLT_BLOCK_ENTITY.get(), pos, state);
     }
-
-    /* ----------------------------------- */
-    /* NBT SAVE/LOAD                       */
-    /* ----------------------------------- */
     
-    // 🔥 FIXED FOR 1.21.1: Added HolderLookup.Provider parameters
+
     @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
@@ -53,11 +49,7 @@ public class ToolLevelingTableBlockEntity extends BlockEntity implements Worldly
         tag.putLong("BonusPoints", this.bonusPoints);
     }
 
-    /* ----------------------------------- */
-    /* CORE LOGIC                          */
-    /* ----------------------------------- */
 
-    /** Returns the item in slot 0 (the item to be enchanted). */
     public ItemStack getStackToEnchant() {
         return items.get(0);
     }
@@ -68,7 +60,7 @@ public class ToolLevelingTableBlockEntity extends BlockEntity implements Worldly
         return getStackToEnchant();
     }
 
-    /** Total value of all payment slots plus any stored bonus points. */
+
     public long getFuelValue() {
         long total = bonusPoints;
         for (int i = 1; i < NUMBER_OF_SLOTS; i++) {
@@ -127,9 +119,6 @@ public class ToolLevelingTableBlockEntity extends BlockEntity implements Worldly
         return true;
     }
 
-    /* ----------------------------------- */
-    /* CONTAINER METHODS                   */
-    /* ----------------------------------- */
 
     @Override
     public int getContainerSize() {
@@ -198,6 +187,8 @@ public class ToolLevelingTableBlockEntity extends BlockEntity implements Worldly
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction side) {
         return index > 0;
     }
+
+    
 
     /* ----------------------------------- */
     /* UI / MENU                           */

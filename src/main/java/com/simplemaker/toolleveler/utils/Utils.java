@@ -17,8 +17,6 @@ import net.minecraft.world.item.enchantment.Enchantments;
 
 public final class Utils {
 
-    // 🔥 FIXED FOR 1.21.1: Map keys changed to ResourceKey<Enchantment>
-    // Renamed FISHING_LUCK to LUCK_OF_THE_SEA and FISHING_SPEED to LURE
     public static final Map<ResourceKey<Enchantment>, Integer> BREAKING_ENCHANTMENTS = ImmutableMap.of(
             Enchantments.LUCK_OF_THE_SEA, 84,
             Enchantments.QUICK_CHARGE, 5,
@@ -31,7 +29,7 @@ public final class Utils {
         EnchantmentOptions options = ToolLevelingConfig.get().enchantmentOptions();
         double globalModifier = options.globalUpgradeCostMultiplier();
         
-        // 🔥 FIXED FOR 1.21.1: Read using the extracted ResourceKey pointer
+        //Read using the extracted ResourceKey pointer
         ResourceKey<Enchantment> key = enchantment.unwrapKey().orElse(null);
         double specificModifier = key != null ? options.enchantmentUpgradeCostModifier().getOrDefault(key, 1.0D) : 1.0D;
         
